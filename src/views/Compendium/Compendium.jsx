@@ -26,7 +26,6 @@ export default function Compendium() {
         setLoading(false);
       };
       getPokemon();
-      //removed pokemons from dependency ->
     }, []);
   // }
 
@@ -65,7 +64,6 @@ export default function Compendium() {
     fetchSearchPokemon(searchName)
       .then((searchedPokemons) => {
         setPokemons(searchedPokemons)
-        // this.setState({pokemons: searchedPokemons});
       })
       .catch((error) => {})
       .finally(() => {
