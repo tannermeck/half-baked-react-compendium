@@ -23,10 +23,10 @@ export default function Compendium() {
       const getPokemon = async () => {
         const pokemonList = await fetchPokemon();
         setPokemons(pokemonList)
-        //  this.setState({pokemons: pokemonList});
         setLoading(false);
       };
       getPokemon();
+      //removed pokemons from dependency ->
     }, []);
   }
 
