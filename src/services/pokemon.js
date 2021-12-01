@@ -60,6 +60,7 @@ export const fetchTypes = async () => {
     .map((pokemonType) => ({type: pokemonType.type}))
     .sort(() => 0.5 - Math.random())
     .slice(0, 5);
+    console.log('random', randomTypes)
   return randomTypes;
 };
 

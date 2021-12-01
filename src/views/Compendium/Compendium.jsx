@@ -18,7 +18,7 @@ export default function Compendium() {
   const [selectedType, setSelectedType] = useState('all');
 
   // TODO 😖 help!
-  if (pokemons.count !== 0) {
+  // if (pokemons.count !== 0) {
     useEffect(() => {
       const getPokemon = async () => {
         const pokemonList = await fetchPokemon();
@@ -28,36 +28,36 @@ export default function Compendium() {
       getPokemon();
       //removed pokemons from dependency ->
     }, []);
-  }
+  // }
+
+  // TODO 😖 help!
+    useEffect(() => {
+       async function getTypes() {
+        const pokemonTypes = await fetchTypes();
+        setTypes(pokemonTypes);
+      }
+      getTypes();
+    }, []);
 
   //TODO 😖 help!
-  //   useEffect(async () => {
-  //      function getTypes() {
-  //       const pokemonTypes = fetchTypes();
-  //       setTypes(pokemonTypes);
-  //     }
-  //     getTypes();
-  //   }, []);
+  useEffect(() => {
+    async function getFilteredPokemon() {
+      if (!selectedType) return;
+      setLoading(true);
 
-  //TODO 😖 help!
-  // useEffect(() => {
-  //   async function getFilteredPokemon() {
-  //     if (!selectedType) return;
-  //     setLoading(true);
+      if (selectedType !== 'all') {
+        const filteredPokemon = await fetchFilteredPokemon(selectedType);
+        setPokemons(filteredPokemon);
+      } else {
+        const pokemonList = await fetchPokemon();
+        setPokemons(pokemonList)
+      }
+      setLoading(false);
+      // setSort('');
+    }
 
-  //     if (selectedType !== 'all') {
-  //       const filteredPokemon = await fetchFilteredPokemon(selectedType);
-  //       setPokemons(filteredPokemon);
-  //     } else {
-  //       const pokemonList = await fetchPokemon();
-  //       this.setState({pokemons: pokemonList});
-  //     }
-  //     setLoading(false);
-  //     setSort('');
-  //   }
-
-  //   getFilteredPokemon();
-  // }, [selectedType]);
+    getFilteredPokemon();
+  }, [selectedType]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
