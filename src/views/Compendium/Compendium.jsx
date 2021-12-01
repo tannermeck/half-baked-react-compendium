@@ -64,7 +64,8 @@ export default function Compendium() {
     setLoading(true);
     fetchSearchPokemon(searchName)
       .then((searchedPokemons) => {
-        this.setState({pokemons: searchedPokemons});
+        setPokemons(searchedPokemons)
+        // this.setState({pokemons: searchedPokemons});
       })
       .catch((error) => {})
       .finally(() => {
